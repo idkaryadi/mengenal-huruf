@@ -41,13 +41,13 @@ export default function HurufPage() {
     </Container>
     <Container fluid>
       <Row>
-        <Col sm={2} xs={1}>
+        <Col sm={2} xs={2} className={styles.nopadding}>
           <button className={styles.prev} onClick={handlePrev}>❮</button>
         </Col>
-        <Col sm={8} xs={10}>
+        <Col sm={8} xs={8} className={styles.nopadding}>
           <button className={styles.huruf}>{data.huruf}</button>
         </Col>
-        <Col sm={2} xs={1}>
+        <Col sm={2} xs={2} className={styles.nopadding}>
           <button className={styles.prev} onClick={handleNext}>❯</button> 
         </Col>
       </Row>
