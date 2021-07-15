@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {abjad} from './konstanta'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
 export default function HurufPage() {
   const alpabet = 'abcdefghijklmnopqrstuvwxyz';
@@ -31,6 +32,15 @@ export default function HurufPage() {
     setData(abjad[daftarAbjad[Number(newIndex)]])
     console.log(e.target.innerText, e)
   }
+  const soundOn = () => {
+    const msg = new SpeechSynthesisUtterance();
+    msg.volume = 1; // 0 to 1
+    msg.rate = 1; // 0.1 to 10
+    // msg.pitch = 1; //0 to 2
+    msg.text = data.huruf;
+    msg.lang = 'id';
+    window.speechSynthesis.speak(msg);
+  }
   return (
     <>
     <h1 style={{"textAlign":"center"}}>Mengenal Huruf</h1>
@@ -44,8 +54,14 @@ export default function HurufPage() {
         <Col sm={2} xs={2} className={styles.nopadding}>
           <button className={styles.prev} onClick={handlePrev}>❮</button>
         </Col>
-        <Col sm={8} xs={8} className={styles.nopadding}>
+        {/* <Col sm={8} xs={8} className={styles.nopadding}>
           <button className={styles.huruf}>{data.huruf}</button>
+        </Col> */}
+        <Col sm={8} xs={8} className={styles.nopadding}>
+          <div className={styles.huruf}>{data.huruf}</div>
+          <div>
+            <button className={styles.suara} onClick={soundOn}><VolumeUpIcon></VolumeUpIcon></button>
+          </div>
         </Col>
         <Col sm={2} xs={2} className={styles.nopadding}>
           <button className={styles.prev} onClick={handleNext}>❯</button> 

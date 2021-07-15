@@ -4,10 +4,17 @@
 }
 
 .huruf {
+  padding-top: 40px;
   width: 100%;
-  height: 375px;
+  height: 340px;
   font-size: 170px;
-  align-items: center;
+  text-align: center;
+}
+
+.suara {
+  width: 100%;
+  border-radius: 5px;
+  /* align-items: center; */
 }
 
 .prev {
@@ -37,10 +44,16 @@
   }
   
   .huruf {
+    padding-top: 40px;
     width: 100%;
-    height: 375px;
+    height: 340px;
     font-size: 150px;
-    align-items: center;
+    text-align: center;
+  }
+
+  .suara {
+    width: 100%;
+    border-radius: 5px;
   }
   
   .prev {
