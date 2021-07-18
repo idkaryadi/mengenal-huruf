@@ -2,7 +2,7 @@
   <v-app dark>
     <v-navigation-drawer
       v-model="drawer"
-      :mini-variant="miniVariant"
+      :mini-variant="$device.isMobile"
       :clipped="clipped"
       fixed
       app
@@ -30,7 +30,8 @@
       app
     >
       <v-toolbar-side-icon @click="drawer = !drawer" />
-      <v-btn
+      <!-- di bawah dicmmetn -->
+      <!-- <v-btn
         icon
         @click.stop="miniVariant = !miniVariant"
       >
@@ -47,15 +48,17 @@
         @click.stop="fixed = !fixed"
       >
         <v-icon>remove</v-icon>
-      </v-btn>
+      </v-btn> -->
+      <!-- natas -->
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn
+      <!-- dibawah  -->
+      <!-- <v-btn
         icon
         @click.stop="rightDrawer = !rightDrawer"
       >
         <v-icon>menu</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-toolbar>
     <v-content>
       <v-container>
@@ -77,12 +80,12 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-footer
+    <!-- <v-footer
       :fixed="fixed"
       app
     >
       <span>&copy; 2019</span>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
@@ -99,16 +102,16 @@ export default {
           title: 'Welcome',
           to: '/'
         },
-        {
-          icon: 'bubble_chart',
-          title: 'Inspire',
-          to: '/inspire'
-        }
+        // {
+        //   icon: 'bubble_chart',
+        //   title: 'Inspire',
+        //   to: '/inspire'
+        // }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Mengenal Huruf'
     }
   }
 }

@@ -9,65 +9,80 @@
       sm8
       md6
     >
-      <div class="text-xs-center">
-        <logo />
-        <vuetify-logo />
-      </div>
       <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
+        <v-card-text class="headline text-xs-center">Mengenal Huruf</v-card-text>
         <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>For more information on Vuetify, check out the <a
-            href="https://vuetifyjs.com"
-            target="_blank"
-          >documentation</a>.</p>
-          <p>If you have questions, please join the official <a
-            href="https://chat.vuetifyjs.com/"
-            target="_blank"
-            title="chat"
-          >discord</a>.</p>
-          <p>Find a bug? Report it on the github <a
-            href="https://github.com/vuetifyjs/vuetify/issues"
-            target="_blank"
-            title="contribute"
-          >issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-          >Nuxt Documentation</a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-          >Nuxt GitHub</a>
+          <div class="text-xs-center display-4 font-weight-bold pb-3">{{data.huruf}}</div>
         </v-card-text>
-        <v-card-actions>
-          <v-spacer />
+        <v-card-text align="center">
           <v-btn
-            color="primary"
-            flat
-            nuxt
-            to="/inspire"
-          >Continue</v-btn>
-        </v-card-actions>
+            @click="handlePrev"
+            elevation="2"
+            fab
+            outlined
+          >
+            <v-icon>chevron_left</v-icon>
+          </v-btn>
+          <v-btn
+            @click="soundOn"
+            elevation="2"
+            fab
+            outlined
+            large
+          >
+            <v-icon>volume_up</v-icon>
+          </v-btn>
+          <v-btn
+            @click="handleNext"
+            elevation="2"
+            fab
+            outlined
+          >
+            <v-icon>chevron_right</v-icon>
+          </v-btn>
+        </v-card-text>
       </v-card>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import {abjad} from './../static/abjad'
 
+const alpabet = 'abcdefghijklmnopqrstuvwxyz';
+const daftarAbjad = alpabet.split("");
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
+  data: () => ({
+    // alpabet: 'abcdefghijklmnopqrstuvwxyz',
+    index: 0,
+    data: abjad.a,
+    daftarAbjad: daftarAbjad,
+  }),
+  methods: {
+    soundOn() {
+      const msg = new SpeechSynthesisUtterance();
+      msg.volume = 1; // 0 to 1
+      msg.rate = 1; // 0.1 to 10
+      // msg.pitch = 1; //0 to 2
+      msg.text = this.data.huruf;
+      msg.lang = 'id';
+      window.speechSynthesis.speak(msg);
+    },
+    handlePrev() {
+      if (this.index - 1 > -1) {
+        console.log("newindex", this.index-1)
+        this.index = this.index - 1
+        this.data = abjad[daftarAbjad[Number(this.index)]]
+      }
+    },
+    handleNext() {
+      if (this.index + 1 < 26) {
+        console.log("newindex", this.index+1)
+        this.index = this.index + 1;
+        console.log("abjad[daftarAbjad[Number(this.index+1)]]", abjad[daftarAbjad[Number(this.index)]])
+        this.data = abjad[daftarAbjad[Number(this.index)]]
+      }
+    }
   }
 }
 </script>
